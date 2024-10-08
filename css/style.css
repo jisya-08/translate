@@ -1,0 +1,117 @@
+/* 全体のスタイル設定 */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f5f7fa; /* 柔らかいグレーブルー背景 */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* コンテナのデザイン */
+.container {
+    background-color: #ffffff; /* 明るい背景色 */
+    padding: 30px;
+    border-radius: 20px; /* 角を丸くして優しい印象に */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 柔らかい影 */
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* タイトルデザイン */
+h1 {
+    font-size: 26px;
+    color: #4a90e2; /* 優しい青色 */
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* 言語選択ボックス */
+.language-selection {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.language-box {
+    width: 48%;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    background-color: #f0f4f8;
+}
+
+/* ボタンのスタイル */
+button {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 20px; /* 丸みのあるボタン */
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 音声入力ボタン */
+.voice-button {
+    background-color: #aad1e6;
+    color: white;
+}
+
+.voice-button:hover {
+    background-color: #92bcd4;
+}
+
+/* 翻訳ボタン */
+.translate-button {
+    background-color: #ffc107;
+    color: white;
+}
+
+.translate-button:hover {
+    background-color: #e6a900;
+}
+
+/* テキストボックス */
+.text-box {
+    width: 100%;
+    background-color: #f0f4f8;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* メディアクエリ（スマホ対応） */
+@media (max-width: 600px) {
+    .language-selection {
+        flex-direction: column;
+    }
+
+    .language-box {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
