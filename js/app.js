@@ -1,59 +1,42 @@
-// 音声認識オブジェクトの作成（ブラウザによって異なるため、簡略化しています）
-let recognition = null;
-if ('webkitSpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition();
-    //recognition.lang = 'ja-JP'; // デフォルトの言語設定
-    recognition.lang = 'en-US'; // デフォルトの言語設定
-    //recognition.lang = 'vi';
-    recognition.onresult = function(event) {
-        const result = event.results[0][0].transcript;
-        document.getElementById("inputText").textContent = result;
-        translateText();
-    
-    };
-} else {
-    console.log("Speech Recognition is not supported");
-}
-
-// 音声認識を開始する関数
+// 音声入力と翻訳処理をシミュレーション
 function startRecognition() {
-    if (recognition) {
-        recognition.start();
-    } else {
-        alert("音声認識がサポートされていません。");
-    }
+    const inputLang = document.getElementById('inputLang').value;
+    const outputLang = document.getElementById('outputLang').value;
+
+    // 音声入力のシミュレーション
+    const inputText = "これは音声入力のテストです"; // 仮の音声入力データ
+    document.getElementById('inputText').textContent = inputText;
+
+    // 翻訳処理のシミュレーション
+    const outputText = "This is a test of voice input"; // 仮の翻訳データ
+    document.getElementById('outputText').textContent = outputText;
+
+    // 履歴を保存
+    saveHistory(inputText, outputText);
 }
 
-// 翻訳を実行する関数
-async function translateText() {
-    const inputLang = document.getElementById("inputLang").value;
-    const outputLang = document.getElementById("outputLang").value;
-    const inputText = document.getElementById("inputText").textContent;
+// 会話履歴をローカルストレージに保存
+function saveHistory(inputText, outputText) {
+    const history = JSON.parse(localStorage.getItem('conversationHistory')) || [];
+    history.push({ input: inputText, output: outputText });
+    localStorage.setItem('conversationHistory', JSON.stringify(history));
+    renderHistory();
+}
 
-    // ここではGoogle翻訳APIを仮定して説明します
-    const apiKey = 'YOUR_GOOGLE_TRANSLATE_API_KEY'; // Google翻訳APIキーを設定
-    const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+// 保存された会話履歴を表示
+function renderHistory() {
+    const history = JSON.parse(localStorage.getItem('conversationHistory')) || [];
+    const historyList = document.getElementById('history');
+    historyList.innerHTML = '';
     
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            q: inputText,
-            source: inputLang,
-            target: outputLang,
-            format: 'text',
-        }),
+    history.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `入力: ${item.input} | 翻訳: ${item.output}`;
+        historyList.appendChild(li);
     });
-
-    if (response.ok) {
-        const data = await response.json();
-        const translatedText = data.data.translations[0].translatedText;
-        document.getElementById("outputText").textContent = translatedText;
-    } else {
-        //document.getElementById("outputText").textContent = "翻訳に失敗しました。";
-        document.getElementById("outputText").textContent = "さようなら";
-    }
 }
 
+// ページ読み込み時に履歴を表示
+window.onload = function() {
+    renderHistory();
+};
