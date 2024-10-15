@@ -1,42 +1,28 @@
-// 音声入力と翻訳処理をシミュレーション
+// Web Speech APIを使用した音声認識の設定
 function startRecognition() {
-    const inputLang = document.getElementById('inputLang').value;
-    const outputLang = document.getElementById('outputLang').value;
+    // ブラウザがWeb Speech APIをサポートしているか確認
+    if (!('webkitSpeechRecognition' in window)) {
+        alert("お使いのブラウザは音声認識をサポートしていません。");
+        return;
+    }
 
-    // 音声入力のシミュレーション
-    const inputText = "これは音声入力のテストです"; // 仮の音声入力データ
-    document.getElementById('inputText').textContent = inputText;
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = document.getElementById("inputLang").value; // 入力言語を選択
+    recognition.interimResults = false;
+    recognition.continuous = false;
 
-    // 翻訳処理のシミュレーション
-    const outputText = "This is a test of voice input"; // 仮の翻訳データ
-    document.getElementById('outputText').textContent = outputText;
+    // 音声認識結果を取得
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('inputText').textContent = transcript; // 取得した音声テキストを表示
 
-    // 履歴を保存
-    saveHistory(inputText, outputText);
+        // ここで、翻訳機能などに transcript を渡すことも可能
+        // 例: translateText(transcript);
+    };
+
+    recognition.onerror = function(event) {
+        alert("音声認識に失敗しました: " + event.error);
+    };
+
+    recognition.start(); // 音声認識開始
 }
-
-// 会話履歴をローカルストレージに保存
-function saveHistory(inputText, outputText) {
-    const history = JSON.parse(localStorage.getItem('conversationHistory')) || [];
-    history.push({ input: inputText, output: outputText });
-    localStorage.setItem('conversationHistory', JSON.stringify(history));
-    renderHistory();
-}
-
-// 保存された会話履歴を表示
-function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('conversationHistory')) || [];
-    const historyList = document.getElementById('history');
-    historyList.innerHTML = '';
-    
-    history.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `入力: ${item.input} | 翻訳: ${item.output}`;
-        historyList.appendChild(li);
-    });
-}
-
-// ページ読み込み時に履歴を表示
-window.onload = function() {
-    renderHistory();
-};
