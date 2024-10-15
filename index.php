@@ -22,6 +22,7 @@
                     <option value="en">英語</option>
                     <option value="zh-CN">中国語（簡体字）</option>
                     <option value="ko">韓国語</option>
+                    <option value="vi">ベトナム語</option>
                 </select>
             </div>
             <div class="w-1/2 pl-2">
@@ -31,6 +32,7 @@
                     <option value="ja">日本語</option>
                     <option value="zh-CN">中国語（簡体字）</option>
                     <option value="ko">韓国語</option>
+                    <option value="vi">ベトナム語</option>
                 </select>
             </div>
         </div>
