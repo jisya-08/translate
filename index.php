@@ -44,10 +44,12 @@
 
         <!-- 入力テキストボックス -->
         <div class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
-            <p id="inputText" class="text-gray-600">ここに音声が表示されます</p>
+            <input id="inputText" type="text" class="text-gray-600">
         </div>
 
-        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mb-4" onclick="startRecognition()">
+        <button 
+        onclick="onTranslate()"
+        class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mb-4" onclick="startRecognition()">
             テキスト翻訳
         </button>
 

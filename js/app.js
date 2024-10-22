@@ -17,7 +17,7 @@ function startRecognition() {
     // 音声認識結果を取得
     recognition.onresult = function (event) {
         const text = event.results[0][0].transcript;
-        document.getElementById('inputText').textContent = text; // 取得した音声テキストを表示
+        document.getElementById('inputText').value = text;
 
         // 翻訳
         const fromLang = fromLangSelect.value
@@ -30,6 +30,13 @@ function startRecognition() {
     };
 
     recognition.start(); // 音声認識開始
+}
+
+const onTranslate = () => {
+    const text = document.getElementById('inputText').value;
+    const fromLang = fromLangSelect.value
+    const toLang = toLangSelect.value
+    translate(text, fromLang, toLang);
 }
 
 /**
