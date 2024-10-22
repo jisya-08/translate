@@ -1,0 +1,1 @@
+const TRANSLATION_URI = "http://localhost/translate/api/ai_translate.php"

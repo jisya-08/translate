@@ -47,6 +47,10 @@
             <p id="inputText" class="text-gray-600">ここに音声が表示されます</p>
         </div>
 
+        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mb-4" onclick="startRecognition()">
+            テキスト翻訳
+        </button>
+
         <!-- 翻訳結果ボックス -->
         <div class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
             <p id="outputText" class="text-gray-600">翻訳結果がここに表示されます</p>
@@ -66,6 +70,7 @@
         </div>
     </div>
 
+    <script src="js/config.js"></script>
     <script src="js/app.js"></script>
 </body>
 
