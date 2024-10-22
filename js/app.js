@@ -1,7 +1,7 @@
 const fromLangSelect = document.getElementById('inputLang');
 const toLangSelect = document.getElementById('outputLang');
 
-// Web Speech APIを使用した音声認識の設定
+// Web Speech APIを使用した音声認識
 function startRecognition() {
     // ブラウザがWeb Speech APIをサポートしているか確認
     if (!('webkitSpeechRecognition' in window)) {
@@ -32,6 +32,11 @@ function startRecognition() {
     recognition.start(); // 音声認識開始
 }
 
+/**
+ * 翻訳機能
+ * api/ai_translate.php に、翻訳前のテキスト、翻訳前の言語、翻訳後の言語を送信して
+ * 翻訳されたテキストを取得し、ブラウザに表示
+ * */ 
 const translate = async (text, fromLang, toLang) => {
     console.log(text, fromLang, toLang)
     try {
