@@ -44,12 +44,11 @@
 
         <!-- 入力テキストボックス -->
         <div class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
-            <input id="inputText" type="text" class="text-gray-600">
+            <input id="inputText" type="text" class="w-full text-gray-600">
         </div>
 
-        <button 
-        onclick="onTranslate()"
-        class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mb-4" onclick="startRecognition()">
+        <!-- テキスト翻訳ボタン -->
+        <button onclick="onTranslate()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mb-4">
             テキスト翻訳
         </button>
 
@@ -58,15 +57,20 @@
             <p id="outputText" class="text-gray-600">翻訳結果がここに表示されます</p>
         </div>
 
-        <!-- 会話保存 -->
-        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mb-4" onclick="startRecognition()">
-        会話保存
+        <!-- 翻訳結果の会話形式表示 -->
+        <div id="translationList" class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
+            <h2 class="text-lg font-bold text-gray-700">会話一覧</h2>
+            <ul id="translationHistory" class="space-y-2 text-gray-600"></ul>
+        </div>
+
+        <!-- 会話保存ボタン -->
+        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mb-4" onclick="saveConversation()">
+            会話保存
         </button>
 
         <!-- 会話履歴 -->
         <div class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
             <h2 class="text-lg font-bold text-gray-700">会話履歴</h2>
-            <!-- 会話履歴へのリンクを追加 -->
             <a href="history.php" class="text-blue-500 hover:underline block mb-4">すべての会話履歴を表示</a>
             <ul id="history" class="list-disc pl-5 text-gray-600"></ul>
         </div>
