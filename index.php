@@ -19,7 +19,7 @@
                 <label for="inputLang" class="block text-gray-700 font-bold mb-2">入力言語</label>
                 <select id="inputLang" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
                     <option value="ja">日本語</option>
-                    <option value="en">英語</option>
+                    <option value="en-US">英語</option>
                     <option value="zh-CN">中国語（簡体字）</option>
                     <option value="ko">韓国語</option>
                     <option value="vi">ベトナム語</option>
@@ -28,7 +28,7 @@
             <div class="w-1/2 pl-2">
                 <label for="outputLang" class="block text-gray-700 font-bold mb-2">翻訳先言語</label>
                 <select id="outputLang" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    <option value="en">英語</option>
+                    <option value="en-US">英語</option>
                     <option value="ja">日本語</option>
                     <option value="zh-CN">中国語（簡体字）</option>
                     <option value="ko">韓国語</option>
@@ -53,9 +53,14 @@
         </button>
 
         <!-- 翻訳結果ボックス -->
+        <!-- 翻訳結果ボックス -->
         <div class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
             <p id="outputText" class="text-gray-600">翻訳結果がここに表示されます</p>
+            <button id="playTranslation" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 mt-2" onclick="playTranslation()">
+                翻訳結果を再生
+            </button>
         </div>
+
 
         <!-- 翻訳結果の会話形式表示 -->
         <div id="translationList" class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">

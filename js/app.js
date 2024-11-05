@@ -52,7 +52,7 @@ const onTranslate = async () => {
 
 // 翻訳機能
 const translate = async (text, fromLang, toLang) => {
-    console.log(text, fromLang, toLang)
+    console.log(text, fromLang, toLang);
     try {
         const response = await fetch(TRANSLATION_URI, {
             method: 'POST',
@@ -73,6 +73,10 @@ const translate = async (text, fromLang, toLang) => {
         const data = await response.json();
         const translatedText = data.translate ? data.translate : "Translation error.";
         document.getElementById('outputText').innerHTML = translatedText;
+
+        // 翻訳結果を読み上げる
+        speakText(translatedText, toLangSelect.value);
+
         return translatedText;
     } catch (error) {
         console.error('Fetch error:', error);
@@ -81,7 +85,23 @@ const translate = async (text, fromLang, toLang) => {
     }
 };
 
+// テキストを読み上げる機能
+const speakText = (text, lang) => {
+    console.log("speak", text, lang)
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang; // 翻訳先の言語で読み上げ
+    synth.speak(utterance);
+};
+
+// 再生ボタンのクリックで読み上げる機能
+const playTranslation = () => {
+    const translatedText = document.getElementById('outputText').textContent;
+    const toLang = toLangSelect.value;
+    speakText(translatedText, toLang);
+}
+
 // 会話保存機能 (追加実装が必要)
 const saveConversation = () => {
     alert("会話が保存されました！（保存機能はサーバー側での実装が必要です）");
-}
+};
