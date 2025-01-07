@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>音声会話翻訳アプリ</title>
+    <link rel="stylesheet" href="css/default.css">
     <!-- Tailwind CSSのリンクを追加 -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -63,8 +64,8 @@
 
 
         <!-- 翻訳結果の会話形式表示 -->
-        <div id="translationList" class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
-            <h2 class="text-lg font-bold text-gray-700">会話一覧</h2>
+        <h2 class="text-lg font-bold text-gray-700">会話一覧</h2>
+        <div id="translationList" class="scroll-area w-full px-3 py-2 border border-gray-300 rounded-lg mb-4">
             <ul id="translationHistory" class="space-y-2 text-gray-600"></ul>
         </div>
 

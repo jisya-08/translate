@@ -1,4 +1,10 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header('Content-Type: application/json');
+
 /**
  *  翻訳前のテキスト、翻訳前の言語、翻訳後の言語を受け取り
  *  Gemini API 送信して、翻訳後のテキストを取得
@@ -26,7 +32,7 @@ $data['translate'] = $translate;
 $data['fromLang'] = $fromLang;
 $data['toLang'] = $toLang;
 
-header('Content-Type: application/json');
+
 $json = json_encode($data);
 echo $json;
 

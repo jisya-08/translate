@@ -1,6 +1,8 @@
 const fromLangSelect = document.getElementById('inputLang');
 const toLangSelect = document.getElementById('outputLang');
 
+console.log(TRANSLATION_URI)
+
 // Web Speech APIを使用した音声認識
 function startRecognition() {
     if (!('webkitSpeechRecognition' in window)) {
@@ -102,6 +104,42 @@ const playTranslation = () => {
 }
 
 // 会話保存機能 (追加実装が必要)
-const saveConversation = () => {
-    alert("会話が保存されました！（保存機能はサーバー側での実装が必要です）");
+const saveConversation = async () => {
+    // 翻訳前のテキスト
+    const inputText = document.getElementById('inputText').value;
+    const inputLang = fromLangSelect.value;
+
+    // 翻訳後のテキスト
+    const translatedText = document.getElementById('outputText').textContent;
+    const outputLang = toLangSelect.value;
+
+    if (!inputText || !translatedText) {
+        alert("保存する会話がありません。");
+        return;
+    }
+
+    try {
+        const response = await fetch('save_conversation.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                input_text: inputText,
+                translated_text: translatedText,
+                input_lang: inputLang,
+                output_lang: outputLang,
+            }),
+        });
+
+        const result = await response.json();
+        if (result.status === 'success') {
+            alert("会話が保存されました！");
+        } else {
+            alert("保存に失敗しました: " + result.message);
+        }
+    } catch (error) {
+        console.error('保存エラー:', error);
+        alert("エラーが発生しました。保存できませんでした。");
+    }
 };

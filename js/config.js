@@ -1,1 +1,1 @@
-const TRANSLATION_URI = "http://localhost/translate/api/ai_translate.php"
+const TRANSLATION_URI = "http://172.16.2.51/translate/api/ai_translate.php"
